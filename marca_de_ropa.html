@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ATELIER — Colección SS25</title>
+  <meta name="description" content="ATELIER · Moda contemporánea. Colección SS25. Envíos a todo el país. Cambios y devoluciones simples." />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👗</text></svg>">
+  <style>
+    :root{
+      --bg:#0b0c10;--panel:#0f1115;--card:#111318;--text:#eef2f6;--muted:#b3bac5;--border:#1f232b;--brand:#111827;--accent:#ffffff;--radius:18px;--shadow:0 10px 30px rgba(0,0,0,.35);--sans:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;--tracking: .04em
+    }
+    @media (prefers-color-scheme: light){:root{--bg:#f7f9fc;--panel:#ffffff;--card:#ffffff;--text:#0b0c10;--muted:#475569;--border:#e5e7eb;--shadow:0 10px 30px rgba(2,6,23,.08)}}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6}
+    a{color:inherit}
+    .wrap{max-width:1280px;margin-inline:auto;padding:18px}
+
+    /* Announcement */
+    .announce{display:flex;justify-content:center;align-items:center;padding:8px 12px;font-size:.9rem;color:var(--text);background:color-mix(in oklab,var(--panel),transparent 15%);border-bottom:1px solid var(--border)}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:60;background:color-mix(in oklab,var(--bg) 70%, transparent);backdrop-filter:blur(8px) saturate(1.1);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{font-weight:800;letter-spacing:.35em;text-transform:uppercase}
+    .nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:12px}
+    .nav a:hover{color:var(--text);background:color-mix(in oklab,var(--panel),transparent 70%)}
+    .nav-left,.nav-right{display:flex;align-items:center;gap:6px}
+    .search{position:relative}
+    .search input{width:220px;max-width:46vw;padding:10px 34px 10px 12px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
+    .search button{position:absolute;right:4px;top:4px;border:0;border-radius:999px;padding:6px 10px;background:transparent;color:var(--muted);cursor:pointer}
+    .menu-btn{display:none}
+    @media (max-width:940px){.menu-btn{display:inline-flex}.nav a.link{display:none}.search input{width:160px}}
+
+    /* Hero */
+    .hero{border:1px solid var(--border);border-radius:24px;overflow:hidden;background:var(--panel);box-shadow:var(--shadow);margin-top:16px}
+    .hero-media{position:relative;aspect-ratio:16/7;background:#000}
+    .hero-media video,.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.05)}
+    .hero-caption{position:absolute;inset:auto 0 0 0;padding:22px;background:linear-gradient(180deg, transparent, rgba(0,0,0,.6));color:#fff}
+    .hero-caption h2{margin:.2rem 0;font-size:2.2rem;letter-spacing:var(--tracking)}
+    .hero-caption p{margin:0;opacity:.9}
+    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);text-decoration:none;color:var(--text);background:color-mix(in oklab,var(--panel), transparent 50%)}
+    .btn.primary{border:0;background:#fff;color:#111;font-weight:800}
+    .btn.outline{background:transparent;border:1px solid #fff;color:#fff}
+
+    /* Grid */
+    section{margin-top:26px}
+    .section-head{display:flex;align-items:end;justify-content:space-between}
+    .section-head h3{margin:0;font-size:1.2rem;letter-spacing:.12em;text-transform:uppercase}
+
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    @media (max-width:1200px){.grid{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.grid{grid-template-columns:1fr}}
+
+    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;position:relative}
+    .imgbox{position:relative;aspect-ratio:3/4;background:#111}
+    .imgbox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .25s ease}
+    .imgbox img.second{opacity:0}
+    .card:hover .imgbox img.second{opacity:1}
+    .card:hover .imgbox img.first{opacity:0}
+    .pinfo{padding:12px}
+    .pname{margin:0;font-weight:600}
+    .pmeta{margin:2px 0 0;color:var(--muted);font-size:.92rem}
+    .price{display:flex;align-items:baseline;gap:8px}
+    .price strong{font-size:1.1rem}
+
+    .sizes{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .size{padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:color-mix(in oklab,var(--panel),transparent 60%);cursor:pointer}
+    .size[aria-pressed="true"]{outline:2px solid #fff}
+    .quick{display:flex;gap:8px;margin-top:10px}
+
+    /* Lookbook */
+    .lookbook{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+    @media (max-width:920px){.lookbook{grid-template-columns:1fr}}
+    .lb-item{border:1px solid var(--border);border-radius:18px;overflow:hidden}
+    .lb-item img{width:100%;height:100%;object-fit:cover}
+
+    /* Footer */
+    footer{margin:36px 0 12px;color:var(--muted)}
+    .fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:18px}
+    @media (max-width:920px){.fgrid{grid-template-columns:1fr 1fr}}
+    .fcol h4{margin-top:0;text-transform:uppercase;letter-spacing:.14em;font-size:.95rem}
+    .newsletter input{width:100%;padding:12px;border-radius:12px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
+
+    /* Drawer (Cart) */
+    .drawer{position:fixed;inset:0 0 0 auto;width:min(420px,100%);transform:translateX(100%);transition:transform .25s ease;background:var(--panel);border-left:1px solid var(--border);box-shadow:var(--shadow);z-index:70;display:flex;flex-direction:column}
+    .drawer.open{transform:translateX(0)}
+    .drawer .top{display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid var(--border)}
+    .drawer .items{flex:1;overflow:auto;display:flex;flex-direction:column}
+    .line{display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:center;padding:12px;border-bottom:1px solid var(--border)}
+    .line img{width:64px;height:80px;object-fit:cover;border-radius:8px}
+    .line .qty{display:flex;gap:8px;align-items:center}
+    .drawer .bottom{border-top:1px solid var(--border);padding:14px}
+
+    /* Modals */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:80}
+    .modal.open{display:flex}
+    .modal .panel{background:var(--card);border:1px solid var(--border);border-radius:16px;max-width:560px;width:95%;padding:18px}
+
+    /* Print */
+    @media print{header,.announce,.drawer,.modal,.hero .hero-media video{display:none!important}}
+  </style>
+</head>
+<body>
+  <div class="announce">ENVÍO GRATIS desde $49.990 · Cambios en 30 días</div>
+  <header>
+    <div class="wrap nav">
+      <div class="nav-left">
+        <button class="menu-btn btn" aria-label="Abrir menú">☰</button>
+        <a class="link" href="#novedades">Novedades</a>
+        <a class="link" href="#mujer">Mujer</a>
+        <a class="link" href="#hombre">Hombre</a>
+        <a class="link" href="#accesorios">Accesorios</a>
+      </div>
+      <div class="brand">ATELIER</div>
+      <div class="nav-right">
+        <div class="search" role="search">
+          <input id="q" type="search" placeholder="Buscar…" aria-label="Buscar productos">
+          <button aria-label="Buscar" onclick="filtrar()">🔍</button>
+        </div>
+        <button class="btn" id="themeToggle" aria-pressed="false">🌙</button>
+        <button class="btn" id="openCart" aria-haspopup="dialog" aria-controls="cart">🛍️ <span id="bagCount" aria-live="polite">0</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-media">
+        <video autoplay muted loop playsinline poster="https://picsum.photos/seed/fashion/1600/700">
+          <source src="" type="video/mp4" />
+        </video>
+        <img src="https://picsum.photos/seed/campaign/1600/700" alt="Campaña SS25" />
+        <div class="hero-caption">
+          <h2>SS25 · New Essentials</h2>
+          <p>Tejidos premium, siluetas limpias, tonos tierra.</p>
+          <div class="cta">
+            <a class="btn primary" href="#catalogo">Comprar ahora</a>
+            <a class="btn outline" href="#lookbook">Ver lookbook</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATALOGO -->
+    <section id="catalogo">
+      <div class="section-head">
+        <h3>Catálogo</h3>
+        <div>
+          <label for="order" class="sr-only">Ordenar</label>
+          <select id="order" onchange="ordenar()">
+            <option value="pop">Más populares</option>
+            <option value="asc">Precio: bajo a alto</option>
+            <option value="desc">Precio: alto a bajo</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" id="grid">
+        <!-- Producto -->
+        <article class="card product" data-name="Blazer Lino" data-price="79990" data-pop="5">
+          <div class="imgbox">
+            <img class="first" src="https://picsum.photos/seed/p1a/800/1067" alt="Blazer Lino"/>
+            <img class="second" src="https://picsum.photos/seed/p1b/800/1067" alt="Blazer Lino detalle"/>
+          </div>
+          <div class="pinfo">
+            <p class="pname">Blazer Lino</p>
+            <p class="pmeta">Arena · Unisex</p>
+            <div class="price"><strong class="p">$79.990</strong><span class="muted">CLP</span></div>
+            <div class="sizes" role="group" aria-label="Tallas">
+              <button class="size" onclick="selSize(this)">S</button>
+              <button class="size" onclick="selSize(this)">M</button>
+              <button class="size" onclick="selSize(this)">L</button>
+            </div>
+            <div class="quick">
+              <button class="btn" onclick="guia()">Guía de tallas</button>
+              <button class="btn" onclick="add(this)">Añadir</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card product" data-name="Camisa Oxford" data-price="34990" data-pop="9">
+          <div class="imgbox">
+            <img class="first" src="https://picsum.photos/seed/p2a/800/1067" alt="Camisa Oxford"/>
+            <img class="second" src="https://picsum.photos/seed/p2b/800/1067" alt="Camisa Oxford detalle"/>
+          </div>
+          <div class="pinfo">
+            <p class="pname">Camisa Oxford</p>
+            <p class="pmeta">Blanco · Hombre</p>
+            <div class="price"><strong class="p">$34.990</strong><span class="muted">CLP</span></div>
+            <div class="sizes" role="group" aria-label="Tallas">
+              <button class="size" onclick="selSize(this)">S</button>
+              <button class="size" onclick="selSize(this)">M</button>
+              <button class="size" onclick="selSize(this)">L</button>
+              <button class="size" onclick="selSize(this)">XL</button>
+            </div>
+            <div class="quick">
+              <button class="btn" onclick="guia()">Guía de tallas</button>
+              <button class="btn" onclick="add(this)">Añadir</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card product" data-name="Vestido Midi" data-price="59990" data-pop="8">
+          <div class="imgbox">
+            <img class="first" src="https://picsum.photos/seed/p3a/800/1067" alt="Vestido Midi"/>
+            <img class="second" src="https://picsum.photos/seed/p3b/800/1067" alt="Vestido Midi detalle"/>
+          </div>
+          <div class="pinfo">
+            <p class="pname">Vestido Midi</p>
+            <p class="pmeta">Negro · Mujer</p>
+            <div class="price"><strong class="p">$59.990</strong><span class="muted">CLP</span></div>
+            <div class="sizes" role="group" aria-label="Tallas">
+              <button class="size" onclick="selSize(this)">XS</button>
+              <button class="size" onclick="selSize(this)">S</button>
+              <button class="size" onclick="selSize(this)">M</button>
+            </div>
+            <div class="quick">
+              <button class="btn" onclick="guia()">Guía de tallas</button>
+              <button class="btn" onclick="add(this)">Añadir</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card product" data-name="Pantalón Wide" data-price="42990" data-pop="7">
+          <div class="imgbox">
+            <img class="first" src="https://picsum.photos/seed/p4a/800/1067" alt="Pantalón Wide"/>
+            <img class="second" src="https://picsum.photos/seed/p4b/800/1067" alt="Pantalón Wide detalle"/>
+          </div>
+          <div class="pinfo">
+            <p class="pname">Pantalón Wide</p>
+            <p class="pmeta">Gris · Unisex</p>
+            <div class="price"><strong class="p">$42.990</strong><span class="muted">CLP</span></div>
+            <div class="sizes" role="group" aria-label="Tallas">
+              <button class="size" onclick="selSize(this)">S</button>
+              <button class="size" onclick="selSize(this)">M</button>
+              <button class="size" onclick="selSize(this)">L</button>
+            </div>
+            <div class="quick">
+              <button class="btn" onclick="guia()">Guía de tallas</button>
+              <button class="btn" onclick="add(this)">Añadir</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- LOOKBOOK -->
+    <section id="lookbook">
+      <div class="section-head"><h3>Lookbook</h3><a href="#" class="btn">Ver campaña</a></div>
+      <div class="lookbook">
+        <div class="lb-item"><img src="https://picsum.photos/seed/lb1/1200/800" alt="Look 1"></div>
+        <div class="lb-item"><img src="https://picsum.photos/seed/lb2/1200/800" alt="Look 2"></div>
+      </div>
+    </section>
+
+    <!-- HISTORIA / SUSTENTABILIDAD -->
+    <section id="story">
+      <div class="section-head"><h3>Nuestra visión</h3></div>
+      <div class="grid">
+        <article class="card" style="padding:18px">
+          <h4>Hecho responsablemente</h4>
+          <p>Trabajamos con talleres auditados y fibras de origen responsable. Priorizamos empaques reutilizables y trazabilidad.</p>
+        </article>
+        <article class="card" style="padding:18px">
+          <h4>Diseño atemporal</h4>
+          <p>Colecciones cápsula con foco en funcionalidad, confort y durabilidad. Menos rotación, más calidad.</p>
+        </article>
+        <article class="card" style="padding:18px">
+          <h4>Hecho para durar</h4>
+          <p>Cada prenda se prueba en uso real. Ofrecemos reparación básica y recomendaciones de cuidado.</p>
+        </article>
+        <article class="card" style="padding:18px">
+          <h4>Circuito local</h4>
+          <p>Envíos neutros en carbono y alianzas con productores locales.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter">
+      <div class="section-head"><h3>Únete</h3><p class="muted">10% OFF en tu primera compra</p></div>
+      <div class="card" style="padding:18px">
+        <form onsubmit="event.preventDefault(); alert('¡Gracias! Te avisaremos de lanzamientos.');">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <input type="email" required placeholder="tu@email.com" style="flex:1;min-width:220px;padding:12px;border-radius:12px;border:1px solid var(--border);background:var(--panel);color:var(--text)">
+            <button class="btn primary" type="submit">Suscribirme</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div class="fgrid">
+      <div class="fcol">
+        <h4>ATELIER</h4>
+        <p class="muted">Atención 9–18h · Envíos en 24–72h · Cambios en 30 días.</p>
+      </div>
+      <div class="fcol"><h4>Tienda</h4><p><a href="#mujer">Mujer</a><br><a href="#hombre">Hombre</a><br><a href="#accesorios">Accesorios</a></p></div>
+      <div class="fcol"><h4>Ayuda</h4><p><a href="#">Guía de tallas</a><br><a href="#">Envíos y devoluciones</a><br><a href="#">Atención</a></p></div>
+      <div class="fcol"><h4>Redes</h4><p><a href="#">Instagram</a><br><a href="#">TikTok</a><br><a href="#">Pinterest</a></p></div>
+    </div>
+    <p class="muted" style="margin-top:12px">© <span id="year"></span> ATELIER · Todos los derechos reservados</p>
+  </footer>
+
+  <!-- Drawer Carrito -->
+  <aside class="drawer" id="cart" role="dialog" aria-modal="true" aria-label="Carrito">
+    <div class="top"><strong>Tu bolsa</strong><button class="btn" onclick="toggleCart(false)">✕</button></div>
+    <div class="items" id="cartItems"></div>
+    <div class="bottom">
+      <div style="display:flex;justify-content:space-between"><span class="muted">Subtotal</span><strong id="subtotal">$0</strong></div>
+      <button class="btn primary" style="width:100%;margin-top:10px" onclick="checkout()">Finalizar compra</button>
+    </div>
+  </aside>
+
+  <!-- Modal Guía de tallas -->
+  <div class="modal" id="modalGuide" role="dialog" aria-modal="true" aria-label="Guía de tallas">
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Guía de tallas</h3><button class="btn" onclick="guide(false)">✕</button></div>
+      <p class="muted">Usa tus medidas: pecho, cintura, cadera. Si dudas, elige una talla más.</p>
+      <div class="grid" style="margin-top:10px">
+        <div class="card" style="padding:12px"><strong>XS</strong><div class="muted">Pecho 80–86 · Cintura 60–66</div></div>
+        <div class="card" style="padding:12px"><strong>S</strong><div class="muted">Pecho 86–92 · Cintura 66–72</div></div>
+        <div class="card" style="padding:12px"><strong>M</strong><div class="muted">Pecho 92–98 · Cintura 72–78</div></div>
+        <div class="card" style="padding:12px"><strong>L</strong><div class="muted">Pecho 98–104 · Cintura 78–84</div></div>
+        <div class="card" style="padding:12px"><strong>XL</strong><div class="muted">Pecho 104–110 · Cintura 84–90</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JSON-LD Organization + Product (ejemplo 1) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ATELIER",
+    "url": "https://tudominio.cl",
+    "logo": "https://tudominio.cl/logo.png",
+    "sameAs": ["https://instagram.com/atelier", "https://tiktok.com/@atelier"]
+  }
+  </script>
+  <script>
+    // ===== Utilidades =====
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    const money = (cents) => new Intl.NumberFormat('es-CL',{style:'currency',currency:'CLP',maximumFractionDigits:0}).format(cents/1);
+
+    // Año
+    $('#year').textContent = new Date().getFullYear();
+
+    // Tema
+    const tgl = $('#themeToggle');
+    const key = 'fashion-theme';
+    const applyTheme = (m)=>{document.documentElement.dataset.theme=m;tgl.textContent = (m==='dark'?'☀️':'🌙');tgl.setAttribute('aria-pressed', m==='dark');};
+    applyTheme(localStorage.getItem(key) || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+    tgl.addEventListener('click', ()=>{const next = (document.documentElement.dataset.theme==='dark')?'light':'dark';localStorage.setItem(key,next);applyTheme(next)});
+
+    // Filtros de catálogo (búsqueda simple por nombre)
+    function filtrar(){
+      const q = $('#q').value.toLowerCase();
+      $$('.product').forEach(p=>{p.style.display = p.dataset.name.toLowerCase().includes(q)?'':'none'});
+    }
+
+    // Ordenar
+    function ordenar(){
+      const mode = $('#order').value; const grid = $('#grid');
+      const items = $$('.product').sort((a,b)=>{
+        if(mode==='asc') return a.dataset.price - b.dataset.price;
+        if(mode==='desc') return b.dataset.price - a.dataset.price;
+        return b.dataset.pop - a.dataset.pop;
+      });
+      items.forEach(el=>grid.appendChild(el));
+    }
+
+    // Selección de talla
+    function selSize(btn){
+      const group = btn.parentElement; $$('.size', group).forEach(b=>b.setAttribute('aria-pressed','false'));
+      btn.setAttribute('aria-pressed','true');
+    }
+
+    // Guía de tallas
+    function guia(){ guide(true) }
+    function guide(open=true){ $('#modalGuide').classList.toggle('open', open) }
+    document.getElementById('modalGuide').addEventListener('click', (e)=>{ if(e.target.id==='modalGuide') guide(false) });
+
+    // ===== Carrito simple (localStorage) =====
+    const bagKey = 'atelier-bag';
+    const bag = JSON.parse(localStorage.getItem(bagKey)||'[]');
+    const openCartBtn = $('#openCart');
+    const cart = $('#cart');
+    const itemsEl = $('#cartItems');
+    const bagCount = $('#bagCount');
+    const subtotalEl = $('#subtotal');
+
+    function toggleCart(open){ cart.classList.toggle('open', open); if(open) renderBag(); }
+    openCartBtn.addEventListener('click', ()=>toggleCart(true));
+
+    function add(btn){
+      const card = btn.closest('.product');
+      const name = card.dataset.name;
+      const price = Number(card.dataset.price);
+      const img = card.querySelector('img.first').src;
+      const sizeBtn = card.querySelector('.size[aria-pressed="true"]');
+      const size = sizeBtn? sizeBtn.textContent : 'Única';
+      const line = {name, price, size, qty:1, img};
+      const idx = bag.findIndex(x=>x.name===name && x.size===size);
+      if(idx>-1){ bag[idx].qty++; } else { bag.push(line); }
+      localStorage.setItem(bagKey, JSON.stringify(bag));
+      renderBag(); toggleCart(true);
+    }
+
+    function remove(i){ bag.splice(i,1); localStorage.setItem(bagKey, JSON.stringify(bag)); renderBag(); }
+    function changeQty(i,delta){ bag[i].qty = Math.max(1, bag[i].qty+delta); localStorage.setItem(bagKey, JSON.stringify(bag)); renderBag(); }
+
+    function renderBag(){
+      bagCount.textContent = bag.reduce((s,x)=>s+x.qty,0);
+      itemsEl.innerHTML = '';
+      let subtotal = 0;
+      bag.forEach((x,i)=>{
+        subtotal += x.price * x.qty;
+        const line = document.createElement('div'); line.className='line';
+        line.innerHTML = `<img src="${x.img}" alt="${x.name}">
+          <div><strong>${x.name}</strong><div class="muted">Talla ${x.size}</div></div>
+          <div class="qty"><button class="btn" aria-label="menos" onclick="changeQty(${i},-1)">−</button><span>${x.qty}</span><button class="btn" aria-label="más" onclick="changeQty(${i},1)">+</button><button class="btn" aria-label="quitar" onclick="remove(${i})">✕</button></div>`;
+        itemsEl.appendChild(line);
+      });
+      subtotalEl.textContent = money(subtotal);
+    }
+
+    function checkout(){
+      if(!bag.length){ alert('Tu bolsa está vacía'); return; }
+      const total = bag.reduce((s,x)=>s + x.price*x.qty, 0);
+      const resumen = bag.map(x=>`${x.qty}× ${x.name} (${x.size})`).join(', ');
+      const msg = encodeURIComponent(`Pedido ATELIER — ${resumen} · Total ${money(total)}`);
+      window.open(`https://wa.me/56912345678?text=${msg}`, '_blank');
+    }
+
+    renderBag(); ordenar();
+  </script>
+</body>
+</html>
